@@ -63,7 +63,7 @@ export async function getStaticProps() {       // to static generate
 
   return {
     props: {
-      races: data.races.slice(0, 8),
+      races: data.races.slice(0, 6),
     },
   };
 }
