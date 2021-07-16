@@ -47,8 +47,8 @@ export default function Home({races}) {
   )
 }
 
-export async function getStaticProps() {       // to static generate
-  console.log('Build Time: getStaticProps')
+export async function getServerSideProps(context) {    // to server side render
+  console.log('Server Side: getServerSideProps')
   const { data } = await client.query({
     query: gql`
       query {
