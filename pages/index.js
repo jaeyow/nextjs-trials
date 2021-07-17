@@ -13,7 +13,7 @@ export default function Home({races}) {
 
       <main className={styles.main}>
         <h1 className={styles.title}>
-          Welcome to F1 in <a href="https://nextjs.org">Next.js!</a>
+          Welcome to F1 in <a href="https://nextjs.org">Next.js (SSG)!</a>
         </h1>
 
         <p className={styles.description}>
