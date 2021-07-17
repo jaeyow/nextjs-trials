@@ -12,6 +12,7 @@ export default function Home() {
     getRaces()
       .then(items => {
         if(mounted) {
+          console.log('Client Side: setRaces')
           setRaces(items.races)
         }
       });
