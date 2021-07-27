@@ -47,23 +47,37 @@ export default function Home({races}) {
   )
 }
 
-export async function getStaticProps() {       // to static generate
-  console.log('Build Time: getStaticProps')
-  const { data } = await client.query({
-    query: gql`
-      query {
-        races {
-          season
-          round
-          raceName
-        }
-      }
-    `,
-  });
+// export async function getStaticProps() {      // to static generate
+//   console.log('Build Time: getStaticProps')
+//   const { data } = await client.query({
+//     query: gql`
+//       query {
+//         races {
+//           season
+//           round
+//           raceName
+//         }
+//       }
+//     `,
+//   });
 
-  return {
-    props: {
-      races: data.races.slice(0, 6),
-    },
-  };
+//   return {
+//     props: {
+//       races: data.races.slice(0, 6),
+//     },
+//   };
+// }
+
+export async function getStaticProps() {      // to static generate
+  console.log('Build Time: getStaticProps jose')
+  const res = await fetch(`http://ergast.com/api/f1/2019.json`)
+    const data = await res.json()
+
+    // Returned as props to page
+    return {
+        props: {
+            races: data.MRData.RaceTable.Races
+        }
+    }
 }
+
