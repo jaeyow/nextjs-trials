@@ -2,8 +2,9 @@ import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 import client from '../apollo-client'
 import gql from 'graphql-tag'
+import Image from 'next/image';
 
-export default function Home({races}) {
+export default function Home({homepageData}) {
   return (
     <div className={styles.container}>
       <Head>
@@ -21,7 +22,7 @@ export default function Home({races}) {
           <code className={styles.code}>pages/index.js</code>
         </p>
 
-        <div className={styles.grid}>
+        {/* <div className={styles.grid}>
           {races.map((race, i) => (
             <div key={i} className={styles.card}>
               <h3>{race.raceName}</h3>
@@ -30,6 +31,44 @@ export default function Home({races}) {
               </p>
             </div>
           ))}
+        </div> */}
+        <div className={styles.grid}>
+          <div className={styles.card}>
+            <h3>{homepageData.discoverAndBuild.sedansAndHatchbackTitle}</h3>
+            <Image
+              src={homepageData.discoverAndBuild.sedansAndHatchbackImageSm}
+              alt="sedansAndHatchbackImageSm"
+              width="500"
+              height="500"
+            />
+          </div>
+          <div className={styles.card}>
+            <h3>{homepageData.discoverAndBuild.suvTitle}</h3>
+            <Image
+              src={homepageData.discoverAndBuild.suVsImageSm}
+              alt="suVsImageSm"
+              width="500"
+              height="500"
+            />
+          </div>
+          <div className={styles.card}>
+            <h3>{homepageData.discoverAndBuild.performanceTitle}</h3>
+            <Image
+              src={homepageData.discoverAndBuild.performanceImageSm}
+              alt="performanceImageSm"
+              width="500"
+              height="500"
+            />
+          </div>
+          <div className={styles.card}>
+            <h3>{homepageData.discoverAndBuild.hybridTitle}</h3>
+            <Image
+              src={homepageData.discoverAndBuild.hybridsImageSm}
+              alt="hybridsImageSm"
+              width="500"
+              height="500"
+            />
+          </div>
         </div>
       </main>
 
@@ -70,14 +109,15 @@ export default function Home({races}) {
 
 export async function getStaticProps() {      // to static generate
   console.log('Build Time: getStaticProps jose')
-  const res = await fetch(`http://ergast.com/api/f1/2019.json`)
-    const data = await res.json()
+  // const res = await fetch(`http://ergast.com/api/f1/2019.json`)
+  const res = await fetch(`http://www.oem-test.subaru.com.au/proxy/cms-api/homepage`)
+  const data = await res.json()
 
-    // Returned as props to page
-    return {
-        props: {
-            races: data.MRData.RaceTable.Races
-        }
-    }
+  // Returned as props to page
+  return {
+      props: {
+        homepageData: data,
+      }
+  }
 }
 
