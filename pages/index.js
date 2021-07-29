@@ -2,8 +2,9 @@ import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 import client from '../apollo-client'
 import gql from 'graphql-tag'
+import Image from 'next/image';
 
-export default function Home({races}) {
+export default function Home({homepageData}) {
   return (
     <div className={styles.container}>
       <Head>
@@ -67,5 +68,3 @@ export async function getStaticProps() {      // to static generate
     },
   };
 }
-
-
