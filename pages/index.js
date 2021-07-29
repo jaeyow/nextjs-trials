@@ -22,7 +22,7 @@ export default function Home({homepageData}) {
           <code className={styles.code}>pages/index.js</code>
         </p>
 
-        {/* <div className={styles.grid}>
+        <div className={styles.grid}>
           {races.map((race, i) => (
             <div key={i} className={styles.card}>
               <h3>{race.raceName}</h3>
@@ -31,44 +31,6 @@ export default function Home({homepageData}) {
               </p>
             </div>
           ))}
-        </div> */}
-        <div className={styles.grid}>
-          <div className={styles.card}>
-            <h3>{homepageData.discoverAndBuild.sedansAndHatchbackTitle}</h3>
-            <Image
-              src={homepageData.discoverAndBuild.sedansAndHatchbackImageSm}
-              alt="sedansAndHatchbackImageSm"
-              width="500"
-              height="500"
-            />
-          </div>
-          <div className={styles.card}>
-            <h3>{homepageData.discoverAndBuild.suvTitle}</h3>
-            <Image
-              src={homepageData.discoverAndBuild.suVsImageSm}
-              alt="suVsImageSm"
-              width="500"
-              height="500"
-            />
-          </div>
-          <div className={styles.card}>
-            <h3>{homepageData.discoverAndBuild.performanceTitle}</h3>
-            <Image
-              src={homepageData.discoverAndBuild.performanceImageSm}
-              alt="performanceImageSm"
-              width="500"
-              height="500"
-            />
-          </div>
-          <div className={styles.card}>
-            <h3>{homepageData.discoverAndBuild.hybridTitle}</h3>
-            <Image
-              src={homepageData.discoverAndBuild.hybridsImageSm}
-              alt="hybridsImageSm"
-              width="500"
-              height="500"
-            />
-          </div>
         </div>
       </main>
 
@@ -86,38 +48,23 @@ export default function Home({homepageData}) {
   )
 }
 
-// export async function getStaticProps() {      // to static generate
-//   console.log('Build Time: getStaticProps')
-//   const { data } = await client.query({
-//     query: gql`
-//       query {
-//         races {
-//           season
-//           round
-//           raceName
-//         }
-//       }
-//     `,
-//   });
-
-//   return {
-//     props: {
-//       races: data.races.slice(0, 6),
-//     },
-//   };
-// }
-
-export async function getServerSideProps() {      // to static generate
-  console.log('Build Time: getServerSideProps jose')
-  // const res = await fetch(`http://ergast.com/api/f1/2019.json`)
-  const res = await fetch(`http://www.oem-test.subaru.com.au/proxy/cms-api/homepage`)
-  const data = await res.json()
-
-  // Returned as props to page
-  return {
-      props: {
-        homepageData: data,
+export async function getStaticProps() {      // to static generate
+  console.log('Build Time: getStaticProps')
+  const { data } = await client.query({
+    query: gql`
+      query {
+        races {
+          season
+          round
+          raceName
+        }
       }
-  }
-}
+    `,
+  });
 
+  return {
+    props: {
+      races: data.races.slice(0, 6),
+    },
+  };
+}
