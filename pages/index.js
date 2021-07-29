@@ -107,8 +107,8 @@ export default function Home({homepageData}) {
 //   };
 // }
 
-export async function getServerSideProps() {      // to static generate
-  console.log('Build Time: getServerSideProps jose')
+export async function getStaticProps() {      // to static generate
+  console.log('Build Time: getStaticProps jose')
   // const res = await fetch(`http://ergast.com/api/f1/2019.json`)
   const res = await fetch(`http://www.oem-test.subaru.com.au/proxy/cms-api/homepage`)
   const data = await res.json()
